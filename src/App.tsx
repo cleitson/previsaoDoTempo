@@ -1,33 +1,51 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { getWeatherByCity } from './helpers/weatherApi'
+import { WeatherCity } from './types'
+
+const initalWeatherCity: WeatherCity = {
+  name: '',
+  country: '',
+  temp: 0,
+  condition: '',
+  icon: '',
+  url: '',
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [search, setSearch] = useState('');
+  const [tempo, setTempo] = useState<WeatherCity>(initalWeatherCity);
+
+  const searchCities = async (cityURL: string) => {
+    const data = await getWeatherByCity(cityURL);
+    setTempo(data);
+    setSearch('');
+  };
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <label htmlFor="searchLabel">Buscar cidade</label>
+        <input 
+          type="text"
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+        />
+        <button onClick={() => searchCities(search)}>Pesquisar</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div>
+        {
+          tempo != initalWeatherCity ? (
+            <div>
+              <h2>{tempo.name}</h2>
+              <h3>{tempo.country}</h3>
+              <h3>{tempo.temp}°C</h3>
+              <h3>{tempo.condition}</h3>
+              <img src={tempo.icon} alt={tempo.condition} />
+              <a href={tempo.url}>Detalhes</a>
+            </div>
+          ): (<p></p>)
+        }
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
