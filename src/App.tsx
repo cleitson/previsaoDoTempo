@@ -16,19 +16,19 @@ function App() {
   const [tempo, setTempo] = useState<WeatherCity>(initalWeatherCity);
 
   const searchCities = async (cityURL: string) => {
-    const data = await getWeatherByCity(cityURL);
+    const data = await getWeatherByCity(cityURL);  
     setTempo(data);
     setSearch('');
   };
 
   return (
-    <>
-      <div>
-        <label htmlFor="searchLabel">Buscar cidade</label>
+    <main className='flex flex-col'>
+      <div className=''>
         <input 
           type="text"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
+          placeholder='Digite o nome da cidade'
         />
         <button onClick={() => searchCities(search)}>Pesquisar</button>
       </div>
@@ -46,7 +46,7 @@ function App() {
           ): (<p></p>)
         }
       </div>
-    </>
+    </main>
   )
 }
 

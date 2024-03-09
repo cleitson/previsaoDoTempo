@@ -1,3 +1,4 @@
+import { ForecastArray, Forecast } from '../types';
 const TOKEN = import.meta.env.VITE_TOKEN;
 
 export const searchCities = async (term: string) => {
@@ -10,7 +11,6 @@ export const searchCities = async (term: string) => {
 };
 
 export const getWeatherByCity = async (cityURL: string) => {
-  console.log(TOKEN);
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?lang=pt&key=${TOKEN}&q=${cityURL}`);
   const data = await response.json();
   
@@ -25,13 +25,13 @@ export const getWeatherByCity = async (cityURL: string) => {
   return obj;
 };
 
-export const getForecastByCity = async (cityURL: string) => {
+export const getForecastByCity = async (cityURL: string): Promise<ForecastArray> => {
   const dias = 7;
   const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?lang=pt&key=${TOKEN}&q=${cityURL}&days=${dias}`);
   const data = await response.json();
 
   const all = data.forecast.forecastday;
-  const forecastArray = all.map((day) => {
+  const forecastArray = all.map((day: Forecast) => {
     return {
       date: day.date,
       maxTemp: day.day.maxtemp_c,
@@ -39,6 +39,6 @@ export const getForecastByCity = async (cityURL: string) => {
       condition: day.day.condition.text,
       icon: day.day.condition.icon,
     };
-  });
+  });  
   return forecastArray;
 };
