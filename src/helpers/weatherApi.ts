@@ -1,12 +1,9 @@
 import { Forecast, SearchByCity, WeatherByCity } from '../types';
 const TOKEN = import.meta.env.VITE_TOKEN;
 
-export const searchCities = async (term: string): Promise<SearchByCity | string> => {
+export const searchCities = async (term: string): Promise<SearchByCity[]> => {
   const response = await fetch(`http://api.weatherapi.com/v1/search.json?lang=pt&key=${TOKEN}&q=${term}`);
   const data = await response.json();
-  if (data.length === 0) {
-    return 'Nenhuma cidade encontrada';
-  }
   return data;
 };
 
