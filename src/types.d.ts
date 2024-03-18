@@ -1,4 +1,14 @@
-export type WeatherCity = {
+export type SearchByCity = {
+  id: number,
+  name: string,
+  region: string,
+  country: string,
+  lat: number,
+  lon: number,
+  url: string
+}
+
+export type WeatherByCity = {
   name: string;
   country: string;
   temp: number;
@@ -18,5 +28,4 @@ export type Forecast = {
     }
   
   }
-}
-export type ForecastArray = Forecast[];
+};
