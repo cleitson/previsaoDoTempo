@@ -1,19 +1,28 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Search } from 'lucide-react';
 import { searchCities, getWeatherByCity, getForecastByCity } from '../../helpers/weatherApi'
-import { Forecast, SearchByCity, WeatherByCity } from '../../types'
 import ListCity from '../ListCities/ListCity';
+import WeatherContext from '../../context/Context';
 
 
 function SearchBar() {
+  const {
+    cities,
+    setCities,
+    setWeatherCity,
+    setForecast,
+  } = useContext(WeatherContext);
 
   const [search, setSearch] = useState('');
-  const [cities, setCities] = useState<SearchByCity[]>([]);
+  const [cityError, setCityError] = useState(false);
   const [showCities, setShowCities] = useState<boolean>(false);
-  const [weatherCity, setWeatherCity] = useState<WeatherByCity>();
-  const [forecast, setForecast] = useState<Forecast[]>([]);
 
   const handleSearch = async (cityURL: string) => {
+    if (search.length < 4) {
+      setCityError(true);
+      return;
+    }
+    setCityError(false);
     const res = await searchCities(cityURL);
     setCities(res);
     setShowCities(true);
@@ -32,33 +41,21 @@ function SearchBar() {
   }
   return (
     <>
-    <div className="relative w-64">
+      <div className="relative w-80 md:w-96">
         <input
           type="text"
-          className="pr-10 p-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="pr-10 p-4 w-full bg-gray600 rounded-lg focus:ring-2 focus:ring-bluelight focus:outline-none"
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSearch(search)}
           value={search}
-          placeholder='Digite o nome da cidade'
+          placeholder='Buscar local'
         />
         <span className="absolute inset-y-0 right-0 flex items-center pr-3">
           <button onClick={() => handleSearch(search)}><Search /></button>
         </span>
       </div>
-    {showCities && <ListCity cities={cities} byCity={handleSearchByCity} />}
-    <div>
-      {
-        weatherCity && (
-          <div>
-            <h2>{weatherCity.name}</h2>
-            <h3>{weatherCity.country}</h3>
-            <h3>{weatherCity.temp}°C</h3>
-            <h3>{weatherCity.condition}</h3>
-            <img src={weatherCity.icon} alt={weatherCity.condition} />
-            <a href={weatherCity.url}>Detalhes</a>
-          </div>
-        )
-      }
-    </div>  
+      { cityError && <span className='text-red-500'>O campo de busca deve possuir 4 ou mais letras</span> }
+      { showCities && <ListCity cities={cities} byCity={handleSearchByCity} />}
     </>
   )
 }

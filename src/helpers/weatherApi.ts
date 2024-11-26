@@ -18,6 +18,7 @@ export const getWeatherByCity = async (cityURL: string): Promise<WeatherByCity> 
     condition: data.current.condition.text,
     icon: data.current.condition.icon,
     url: cityURL,
+    localtime: data.location.localtime,
   });
   return obj;
 };

@@ -15,6 +15,7 @@ export type WeatherByCity = {
   condition: string;
   icon: string;
   url: string;
+  localtime: string;
 };
 
 export type Forecast = {
@@ -29,3 +30,16 @@ export type Forecast = {
   
   }
 };
+
+export type WeatherContextType = {
+  loading: boolean;
+  cities: SearchByCity[];
+  weatherCity: WeatherByCity | undefined;
+  forecast: Forecast[];
+  showCities: boolean;
+  setLoading: (loading: boolean) => void;
+  setCities: (cities: SearchByCity[]) => void;
+  setWeatherCity: (weatherCity: WeatherByCity) => void;
+  setForecast: (forecast: Forecast[]) => void;
+  setShowCities: (showCities: boolean) => void;
+}

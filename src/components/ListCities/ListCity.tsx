@@ -12,18 +12,15 @@ function ListCity({ cities, byCity }: CitiesProps) {
   }
 
   return (
-    <div className='flex flex-col md:flex-row text-center'>
+    <div className='flex flex-col text-center p-5'>
       {
         cities.map((city: SearchByCity) => (
           <button 
             key={city.id}
-            className='flex-col m-5 p-6 items-center border rounded-xl'
-            onClick={() => byCity(city.url)}
+            className='flex-col m-3 p-4 items-center bg-gray500 rounded-xl w-80 md:w-96'
+            onClick={() => byCity(city.url)}            
           >
-            <h2>{city.name}</h2>
-            <h3>{city.region}</h3>
-            <h3>{city.country}</h3>
-            <h3>{city.url}</h3>
+            <span className='text-gray100'>{city.name} - {city.region}, {city.country}</span>
           </button>
         ))
       }
