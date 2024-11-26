@@ -3,9 +3,9 @@ import WeatherContext from '../context/Context';
 
 
 function CityPage() {
-  const { weatherCity } = useContext(WeatherContext)
+  const { weatherCity, forecast } = useContext(WeatherContext) 
   return (
-    <div>
+    <main className='flex flex-col items-center h-screen font-sans bg-imagebackground bg-repeat'>
         {
           weatherCity && (
             <div>
@@ -14,11 +14,10 @@ function CityPage() {
               <h3>{weatherCity.temp}°C</h3>
               <h3>{weatherCity.condition}</h3>
               <img src={weatherCity.icon} alt={weatherCity.condition} />
-              <a href={weatherCity.url}>Detalhes</a>
             </div>
           )
         }
-      </div>
+      </main>
   )
 }
 
