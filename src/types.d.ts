@@ -10,12 +10,20 @@ export type SearchByCity = {
 
 export type WeatherByCity = {
   name: string;
+  localtime: string;
   country: string;
   temp: number;
   condition: string;
   icon: string;
   url: string;
-  localtime: string;
+  last_updated: string;
+  region: string;
+  wind_kph: number;
+  humidity: number;
+  feelslike_c: number;
+  uv: number;
+  is_day: number;
+  code: number;
 };
 
 export type Forecast = {

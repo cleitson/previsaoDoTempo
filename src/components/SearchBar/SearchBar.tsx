@@ -1,19 +1,21 @@
 import { useState, useContext } from 'react'
 import { Search } from 'lucide-react';
 import { searchCities } from '../../helpers/weatherApi'
-import ListCity from '../ListCities/ListCity';
+import { useLocation, useNavigate } from 'react-router-dom';
 import WeatherContext from '../../context/Context';
 
 
 function SearchBar() {
   const {
-    cities,
     setCities,
+    setShowCities,
   } = useContext(WeatherContext);
+
+  const location = useLocation().pathname;
+  const navigate = useNavigate();
 
   const [search, setSearch] = useState('');
   const [cityError, setCityError] = useState(false);
-  const [showCities, setShowCities] = useState<boolean>(false);
 
   const handleSearch = async (cityURL: string) => {
     if (search.length < 4) {
@@ -23,6 +25,9 @@ function SearchBar() {
     setCityError(false);
     const res = await searchCities(cityURL);
     setCities(res);
+    if (location === '/citypage') {
+      navigate('/');
+    }    
     setShowCities(true);
     setSearch('');
   };
@@ -44,7 +49,6 @@ function SearchBar() {
         </span>
       </div>
       { cityError && <span className='text-red-500'>O campo de busca deve possuir 4 ou mais letras</span> }
-      { showCities && <ListCity cities={cities} />}
     </>
   )
 }

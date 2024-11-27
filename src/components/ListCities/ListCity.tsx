@@ -31,7 +31,7 @@ function ListCity({ cities }: CitiesProps) {
         cities.map((city: SearchByCity) => (
           <button 
             key={city.id}
-            className='flex-col m-3 p-4 items-center bg-gray500 rounded-xl w-80 md:w-96 md:hover:scale-110'
+            className='flex-col m-3 p-4  bg-gray500 rounded-xl w-80 md:w-96 md:hover:scale-110'
             onClick={() => handleSearchByCity(city.url)}            
           >
             <span className='text-gray100'>{city.name} - {city.region}, {city.country}</span>
