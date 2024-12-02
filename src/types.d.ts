@@ -50,4 +50,5 @@ export type WeatherContextType = {
   setWeatherCity: (weatherCity: WeatherByCity) => void;
   setForecast: (forecast: Forecast[]) => void;
   setShowCities: (showCities: boolean) => void;
+  bgImage: string;
 }

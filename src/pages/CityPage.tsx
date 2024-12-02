@@ -1,30 +1,15 @@
-import { useContext, useMemo, useState } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import WeatherContext from '../context/Context';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Logo from '../assets/logo.svg'
-import { weatherConditions } from '../helpers/weatherConditions';
+import { bgMap } from '../helpers/weatherConditions';
+
 
 
 function CityPage() {
   const navigate = useNavigate()
-  const { weatherCity, forecast } = useContext(WeatherContext)
-  const [bg, setBg] = useState<string>('ClearDay');
-  
-  const filterBg = (codeTemp: number | undefined): string => {
-    for (const [key, values] of Object.entries(weatherConditions)) {
-      if (values.includes(codeTemp as number)) {
-        return key;
-      }
-    }
-    return 'Clear';
-  }
-
-  useMemo(() => {
-    const temp = filterBg(weatherCity?.code)
-    const day = weatherCity?.is_day === 1 ? 'Day' : 'Night';
-    setBg(`${temp}${day}`);    
-  }, [weatherCity])
+  const { weatherCity,forecast, bgImage } = useContext(WeatherContext)
   
   return (
     <main className='flex flex-col md:flex-row w-screen h-screen font-nunito bg-imagebackground p-2'>
@@ -35,7 +20,7 @@ function CityPage() {
           </button>
           <SearchBar />
         </div>
-        <div className={`bg-${bg} bg-auto flex m-2 rounded-lg h-80`}>
+        <div className={`${bgMap[bgImage] || 'bg-ClearDay'} bg-auto flex m-2 rounded-lg h-80`}>
           {
             weatherCity && (
               <div className='flex flex-col w-full justify-between'>
@@ -61,7 +46,7 @@ function CityPage() {
 
         </div>
       </div>
-      <div>
+      <div className='flex'>
         {
           forecast.map((day) => (
             <div key={day.date}>
