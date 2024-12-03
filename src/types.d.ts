@@ -34,8 +34,9 @@ export type Forecast = {
     condition: {
       text: string;
       icon: string;
-    }
-  
+    },
+    daily_chance_of_rain: number;
+    uv: number;  
   }
 };
 

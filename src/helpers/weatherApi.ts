@@ -10,7 +10,7 @@ export const searchCities = async (term: string): Promise<SearchByCity[]> => {
 export const getWeatherByCity = async (cityURL: string): Promise<WeatherByCity> => {
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?lang=pt&key=${TOKEN}&q=${cityURL}`);
   const data = await response.json();
-  
+  console.warn('current',data);
   const obj = ({
     name: data.location.name,
     localtime: data.location.localtime,
@@ -21,10 +21,10 @@ export const getWeatherByCity = async (cityURL: string): Promise<WeatherByCity> 
     url: cityURL,
     last_updated: data.current.last_updated,
     region: data.location.region,
-    wind_kph: data.wind_kph,
-    humidity: data.humidity,
-    feelslike_c: data.feelslike_c,
-    uv: data.uv,
+    wind_kph: data.current.wind_kph,
+    humidity: data.current.humidity,
+    feelslike_c: data.current.feelslike_c,
+    uv: data.current.uv,
     is_day: data.current.is_day,
     code: data.current.condition.code,
   });
@@ -32,9 +32,10 @@ export const getWeatherByCity = async (cityURL: string): Promise<WeatherByCity> 
 };
 
 export const getForecastByCity = async (cityURL: string): Promise<Forecast[]> => {
-  const dias = 7;
+  const dias = 3;// dia atual e mais 2 dias no plano free
   const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?lang=pt&key=${TOKEN}&q=${cityURL}&days=${dias}`);
   const data = await response.json();
+  console.warn('forecast',data);
 
   const all = data.forecast.forecastday;
   const forecastArray = all.map((day: Forecast) => {
@@ -47,6 +48,9 @@ export const getForecastByCity = async (cityURL: string): Promise<Forecast[]> =>
           text: day.day.condition.text,
           icon: day.day.condition.icon,
         },
+        daily_chance_of_rain: day.day.daily_chance_of_rain,
+        uv: day.day.uv,
+        
       }
     };
   });  
