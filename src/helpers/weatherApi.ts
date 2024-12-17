@@ -2,13 +2,13 @@ import { Forecast, SearchByCity, WeatherByCity } from '../types';
 const TOKEN = import.meta.env.VITE_TOKEN;
 
 export const searchCities = async (term: string): Promise<SearchByCity[]> => {
-  const response = await fetch(`http://api.weatherapi.com/v1/search.json?lang=pt&key=${TOKEN}&q=${term}`);
+  const response = await fetch(`https://api.weatherapi.com/v1/search.json?lang=pt&key=${TOKEN}&q=${term}`);
   const data = await response.json();
   return data;
 };
 
 export const getWeatherByCity = async (cityURL: string): Promise<WeatherByCity> => {
-  const response = await fetch(`http://api.weatherapi.com/v1/current.json?lang=pt&key=${TOKEN}&q=${cityURL}`);
+  const response = await fetch(`https://api.weatherapi.com/v1/current.json?lang=pt&key=${TOKEN}&q=${cityURL}`);
   const data = await response.json();
   const obj = ({
     name: data.location.name,
@@ -32,7 +32,7 @@ export const getWeatherByCity = async (cityURL: string): Promise<WeatherByCity> 
 
 export const getForecastByCity = async (cityURL: string): Promise<Forecast[]> => {
   const dias = 3;// dia atual e mais 2 dias no plano free
-  const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?lang=pt&key=${TOKEN}&q=${cityURL}&days=${dias}`);
+  const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?lang=pt&key=${TOKEN}&q=${cityURL}&days=${dias}`);
   const data = await response.json();
 
   const all = data.forecast.forecastday;
