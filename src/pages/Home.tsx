@@ -11,7 +11,7 @@ function Home() {
 
     <main className=' flex flex-col items-center h-full md:h-screen font-nunito bg-imagebackground bg-cover min-h-screen'>
       <div className='flex items-center gap-3 text-lg h-1/4'>
-        <img src={logo}></img>
+        <img src={logo} alt='imagem de logo'></img>
         <h1 className="text-gray100">Weather API</h1>
       </div>
       <div className="flex flex-col items-center gap-5 p-2">
