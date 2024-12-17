@@ -8,12 +8,15 @@ import IconTemp from '../assets/icons/IconTemp.svg'
 import IconUmidade from '../assets/icons/IconUmidade.svg'
 import IconVento from '../assets/icons/IconVento.svg'
 import IconUV from '../assets/icons/IconUV.svg'
+import Home from './Home';
 
 
 
 function CityPage() {
   const navigate = useNavigate()
-  const { weatherCity,forecast, bgImage } = useContext(WeatherContext)
+  const { weatherCity, forecast, bgImage } = useContext(WeatherContext)
+
+  if (!weatherCity) return <Home />
 
   const dayOfWeek = (day: string): string => {
     const date = new Date(day);
@@ -65,42 +68,42 @@ function CityPage() {
           </div>
           <div className='flex justify-between m-3 border-b-2 border-gray600 pb-2'>
             <div className='flex gap-3'>
-              <img src={IconTemp}/>
+              <img src={IconTemp} />
               <span className='text-gray200'>Sensação térmica</span>
             </div>
             <span className='text-gray100'>{`${weatherCity?.feelslike_c} °C`}</span>
           </div>
           <div className='flex justify-between m-3 border-b-2 border-gray600 pb-2'>
             <div className='flex gap-3'>
-              <img src={IconChuva}/>
+              <img src={IconChuva} />
               <span className='text-gray200'>Probabilidade de chuva</span>
             </div>
             <span className='text-gray100'>{`${forecast[0].day.daily_chance_of_rain}%`}</span>
           </div>
           <div className='flex justify-between m-3 border-b-2 border-gray600 pb-2'>
             <div className='flex gap-3'>
-              <img src={IconUmidade}/>
+              <img src={IconUmidade} />
               <span className='text-gray200'>Umidade do ar</span>
             </div>
             <span className='text-gray100'>{`${weatherCity?.humidity}%`}</span>
           </div>
           <div className='flex justify-between m-3 border-b-2 border-gray600 pb-2'>
             <div className='flex gap-3'>
-              <img src={IconUV}/>
+              <img src={IconUV} />
               <span className='text-gray200'>UV</span>
             </div>
             <span className='text-gray100'>{`${weatherCity?.uv}`}</span>
           </div>
           <div className='flex justify-between m-3 border-b-2 border-gray600 pb-2'>
             <div className='flex gap-3'>
-              <img src={IconVento}/>
+              <img src={IconVento} />
               <span className='text-gray200'>Velocidade do vento</span>
             </div>
             <span className='text-gray100'>{`${weatherCity?.wind_kph} km/h`}</span>
           </div>
         </div>
         <div className='bg-gray800 flex justify-around m-2 gap-9 p-2 rounded-lg'>
-          {            
+          {
             forecast.slice(1).map((day) => (
               <div key={day.date} className='flex flex-col items-center p-3 gap-1 text-gray100'>
                 <span>{dayOfWeek(day.date)}</span>
@@ -114,6 +117,14 @@ function CityPage() {
             ))
           }
         </div>
+      </div>
+      <div className='col-span-full flex items-center justify-center'>
+        <a href="https://www.weatherapi.com/" title="Free Weather API">
+          <img
+            src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png'
+            alt="Weather data by WeatherAPI.com"
+          />
+        </a>
       </div>
     </main>
   )
