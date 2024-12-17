@@ -35,7 +35,7 @@ function SearchBar() {
 
   return (
     <>
-      <div className="relative w-80 md:w-96">
+      <div className="relative w-full">
         <input
           type="text"
           className="pr-10 p-4 w-full bg-gray600 rounded-lg focus:ring-2 focus:ring-bluelight focus:outline-none"

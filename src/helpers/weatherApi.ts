@@ -56,13 +56,3 @@ export const getForecastByCity = async (cityURL: string): Promise<Forecast[]> =>
   });  
   return forecastArray;
 };
-
-/*
-return {
-      date: day.date,
-      maxTemp: day.day.maxtemp_c,
-      minTemp: day.day.mintemp_c,
-      condition: day.day.condition.text,
-      icon: day.day.condition.icon,
-    };
-*/
