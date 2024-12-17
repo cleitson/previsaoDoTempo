@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# Weather API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação de previsão do tempo desenvolvida com React, TypeScript e Vite. Ele permite que os usuários busquem informações meteorológicas de diferentes cidades e visualizem previsões detalhadas.
 
-Currently, two official plugins are available:
+## Sobre projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Instalação
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone o repositório:
+    ```sh
+    git clone https://github.com/cleitson/previsaoDoTempo.git
+    cd seu-repositorio
+    ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+2. Instale as dependências:
+    ```sh
+    npm install
+    ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. Configure o arquivo `.env` com seu token da API:
+    ```sh
+    cp .env.example .env
+    # Edite o arquivo .env e adicione seu token da API
+    ```
+
+## Scripts Disponíveis
+
+- `npm run dev`: Inicia o servidor de desenvolvimento.
+- `npm run build`: Compila o projeto para produção.
+- `npm run lint`: Executa o ESLint para verificar problemas no código.
+- `npm run preview`: Visualiza a versão de produção do projeto.
+
+## Tecnologias Utilizadas
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [WeatherAPI](https://www.weatherapi.com/)
+
+## Licença
