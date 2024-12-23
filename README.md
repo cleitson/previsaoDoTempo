@@ -2,16 +2,17 @@
 
 Este projeto é uma aplicação de previsão do tempo desenvolvida com React, TypeScript e Vite. Ele permite que os usuários busquem informações meteorológicas de diferentes cidades e visualizem previsões detalhadas.
 
-## Sobre projeto
-
-
+## Sobre o Projeto
+De início, este é um dos projetos do curso da [Trybe!](https://betrybe.com/), mas foi totalmente reformulado. O design foi encontrado na internet e é baseado no layout do [Figma da Rocketseat](https://www.figma.com/community/file/1270841135856047223).
 
 ## Instalação
+> [!IMPORTANT]
+> **ATENÇÃO**: você precisará obter uma chave de acesso para usar essa funcionalidade. O plano básico é gratuito. [Gerando uma chave da API](https://www.weatherapi.com/docs/)
 
 1. Clone o repositório:
     ```sh
     git clone https://github.com/cleitson/previsaoDoTempo.git
-    cd seu-repositorio
+    cd previsaoDoTempo
     ```
 
 2. Instale as dependências:
@@ -40,4 +41,8 @@ Este projeto é uma aplicação de previsão do tempo desenvolvida com React, Ty
 - [Tailwind CSS](https://tailwindcss.com/)
 - [WeatherAPI](https://www.weatherapi.com/)
 
-## Licença
+## Contato
+
+- LinkedIn: [Cleitson Lima](https://www.linkedin.com/in/cleitsonlima/)
+- Portfólio: [cleitson.dev.br](https://cleitson.dev.br/)
+- E-mail: cleitson.ftw@gmail.com
