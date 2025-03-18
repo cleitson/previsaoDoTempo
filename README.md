@@ -1,11 +1,8 @@
 # Weather API
 
 Este projeto é uma aplicação de previsão do tempo desenvolvida com React, TypeScript e Vite. Ele permite que os usuários busquem informações meteorológicas de diferentes cidades e visualizem previsões detalhadas.
-
-## Sobre o Projeto
-De início, este é um dos projetos do curso da [Trybe!](https://betrybe.com/), mas foi totalmente reformulado. O design foi encontrado na internet e é baseado no layout do [Figma da Rocketseat](https://www.figma.com/community/file/1270841135856047223).
-
 [Link para visualizar o projeto funcional.](https://previsao-do-tempo-smoky-mu.vercel.app/)
+
 
 ## Instalação
 > [!IMPORTANT]
